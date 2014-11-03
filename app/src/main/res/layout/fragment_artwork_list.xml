@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dy.easale.ArtworkListFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/action_add_artwork"
+              android:title="Add"
+              android:showAsAction="always" />
+    </menu>
+    <ListView
+        android:id="@+id/artworkListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</FrameLayout>
