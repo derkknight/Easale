@@ -3,14 +3,13 @@ package com.dy.easale;
 /**
  * Created by Derick Yung on 9/17/2014.
  */
-public class Sale {
+public class Sale extends Artwork {
 
-    Artwork artwork;
     String time;
 
     public Sale(Artwork artwork, String time)
     {
-        this.artwork = artwork;
+        super(artwork.getTitle(), artwork.getPrice(), artwork.getIcon());
         this.time = time;
     }
 }

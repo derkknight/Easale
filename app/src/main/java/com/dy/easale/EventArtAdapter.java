@@ -15,12 +15,12 @@ import java.util.ArrayList;
  * Created by Derick Yung on 9/15/2014.
  */
 
-public class EventArtAdapter extends ArrayAdapter<Artwork> {
+public class EventArtAdapter extends ArrayAdapter<Event> {
     private Context context;
-    private ArrayList<Artwork> data;
+    private ArrayList<Event> data;
 
-    public EventArtAdapter(Context context, ArrayList<Artwork> data) {
-        super(context, R.layout.artwork_row, data);
+    public EventArtAdapter(Context context, ArrayList<Event> data) {
+        super(context, R.layout.eventart_row, data);
         this.context = context;
         this.data = data;
     }
@@ -31,15 +31,13 @@ public class EventArtAdapter extends ArrayAdapter<Artwork> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View row = inflater.inflate(R.layout.eventart_row, parent, false);
-        TextView title = (TextView) row.findViewById(R.id.title);
-        TextView price = (TextView) row.findViewById(R.id.price);
+        TextView name = (TextView) row.findViewById(R.id.name);
+        TextView total = (TextView) row.findViewById(R.id.total);
         ImageView icon = (ImageView) row.findViewById(R.id.icon);
-        ImageButton addButton = (ImageButton) row.findViewById(R.id.buttonAdd);
 
-        title.setText(data.get(i).getTitle());
-        price.setText(data.get(i).getPrice());
+        name.setText(data.get(i).getName());
+        total.setText(data.get(i).getTotal());
         icon.setImageResource(R.drawable.ic_launcher);
-        addButton.setImageResource(R.drawable.ic_launcher);
         return row;
     }
 }
