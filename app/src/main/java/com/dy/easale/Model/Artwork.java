@@ -1,4 +1,4 @@
-package com.dy.easale;
+package com.dy.easale.Model;
 
 /**
  * Created by Derick Yung on 9/16/2014.
@@ -6,13 +6,14 @@ package com.dy.easale;
 public class Artwork {
     private String title;
     private String price;
+    private String description;
     private String icon;
 
-
-    public Artwork(String title, String price, String icon)
+    public Artwork(String title, String price, String description, String icon)
     {
         this.title = title;
         this.price = price;
+        this.description = description;
         this.icon = icon;
     }
 
@@ -20,7 +21,6 @@ public class Artwork {
     {
         return this.title;
     }
-
     public void setTitle(String title)
     {
         this.title = title;
@@ -30,14 +30,15 @@ public class Artwork {
     {
         return this.price;
     }
-
     public void setPrice()
     {
         this.price = price;
     }
 
-    public String getIcon() { return this.icon; }
+    public String getDescription() { return this.description; }
+    public void setDescription(String description) { this.description = description; }
 
+    public String getIcon() { return this.icon; }
     public void setIcon(String icon) { this.icon = icon; }
 
 }

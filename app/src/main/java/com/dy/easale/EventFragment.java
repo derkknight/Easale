@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.dy.easale.Model.Artwork;
 
 import java.util.ArrayList;
 
@@ -19,11 +20,8 @@ public class EventFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //inflater.inflate(R.layout.fragment_artwork_list, container);
-        art_array.add(new Artwork("Mona Lisa", "15.99", "Icon_placeholder"));
-        art_array.add(new Artwork("The Scream", "5.99", "Icon2_placeholder"));
-
-        EventArtAdapter adapter = new EventArtAdapter(inflater.getContext(), art_array);
-        setListAdapter(adapter);
+        //EventArtAdapter adapter = new EventArtAdapter(inflater.getContext(), art_array);
+        //setListAdapter(adapter);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

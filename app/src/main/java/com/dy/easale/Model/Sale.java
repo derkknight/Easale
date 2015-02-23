@@ -1,4 +1,4 @@
-package com.dy.easale;
+package com.dy.easale.Model;
 
 /**
  * Created by Derick Yung on 9/17/2014.
@@ -9,7 +9,7 @@ public class Sale extends Artwork {
 
     public Sale(Artwork artwork, String time)
     {
-        super(artwork.getTitle(), artwork.getPrice(), artwork.getIcon());
+        super(artwork.getTitle(), artwork.getPrice(), artwork.getDescription(), artwork.getIcon());
         this.time = time;
     }
 }

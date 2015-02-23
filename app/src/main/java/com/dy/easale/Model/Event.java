@@ -1,4 +1,4 @@
-package com.dy.easale;
+package com.dy.easale.Model;
 
 import java.util.ArrayList;
 
