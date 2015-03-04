@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import com.dy.easale.FileHelper;
+import com.dy.easale.Model.Artwork;
 import com.dy.easale.R;
 
 import java.io.IOException;
@@ -110,12 +111,11 @@ public class AddArtworkActivity extends Activity {
             description = "No description.";
         }
 
-        FileHelper.TextProvider textProvider = new FileHelper.TextProvider();
         FileHelper.ImageProvider imageProvider = new FileHelper.ImageProvider();
+        FileHelper.DbProvider dbProvider = new FileHelper.DbProvider(view.getContext());
 
         imagePath = imageProvider.saveImage(imageBitmap);
-        textProvider.addArtwork(title, price, description, imagePath);
-
+        dbProvider.createArtwork(new Artwork(title, price, imagePath));
 
 
         String message = "'" + title + "' has been saved";

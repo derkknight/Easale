@@ -7,5 +7,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_add_artwork">New Artwork</string>
     <string name="title_activity_detail_artwork">Detail</string>
+    <string name="title_activity_artwork_list">ArtworkListActivity</string>
 
 </resources>

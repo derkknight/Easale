@@ -1,32 +1,34 @@
 package com.dy.easale;
 
-
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.dy.easale.Controller.ArtworkListActivity;
-import com.dy.easale.Model.Artwork;
-
-import java.util.ArrayList;
 
 /**
  * Created by Derick Yung on 9/16/2014.
  */
-public class EventFragment extends ListFragment {
+public class ManageFragment extends ListFragment {
 
-    String[] options = new String[] { "Edit Ongoing Event Sales" };
-
+    String[] options = new String[] { "View Artworks", "View Events"};
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+    }
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        inflater.inflate(R.menu.fragment_manage, menu);
     }
 
     @Override
@@ -46,6 +48,7 @@ public class EventFragment extends ListFragment {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
         switch (position)
@@ -58,4 +61,6 @@ public class EventFragment extends ListFragment {
         }
 
     }
+
+
 }

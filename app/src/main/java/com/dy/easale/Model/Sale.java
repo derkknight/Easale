@@ -9,7 +9,7 @@ public class Sale extends Artwork {
 
     public Sale(Artwork artwork, String time)
     {
-        super(artwork.getTitle(), artwork.getPrice(), artwork.getDescription(), artwork.getIcon());
+        super(artwork.getTitle(), artwork.getPrice(), artwork.getIcon());
         this.time = time;
     }
 }

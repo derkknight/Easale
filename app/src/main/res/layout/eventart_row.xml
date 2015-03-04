@@ -5,7 +5,7 @@
 
     <!-- Icon -->
     <ImageView
-        android:id="@+id/icon"
+        android:id="@+id/eventIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginRight="10dp" />
@@ -16,8 +16,8 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/icon"
-        android:layout_toRightOf="@+id/icon"
+        android:layout_alignTop="@id/eventIcon"
+        android:layout_toRightOf="@id/eventIcon"
         android:textSize="10dp"
         android:textStyle="bold"
         />
@@ -27,9 +27,19 @@
         android:id="@+id/total"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/title"
+        android:layout_below="@id/name"
         android:layout_marginTop="3dip"
-        android:layout_toRightOf="@+id/icon"
+        android:layout_toRightOf="@+id/eventIcon"
         android:textSize="10dp" />
+
+    <!-- Plus Button -->
+    <ImageButton
+        android:id="@+id/addImageButton"
+        android:layout_height="fill_parent"
+        android:layout_width="50dp"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/ic_input_add">
+    </ImageButton>
+
 
 </RelativeLayout>

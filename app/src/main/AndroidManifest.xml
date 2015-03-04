@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dy.easale" >
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -18,14 +20,17 @@
         </activity>
         <activity
             android:name="com.dy.easale.Controller.AddArtworkActivity"
-            android:label="@string/title_activity_add_artwork" >
+            android:label="@string/title_activity_add_artwork"
+            android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
         <activity
             android:name="com.dy.easale.Controller.DetailArtworkActivity"
             android:label="@string/title_activity_detail_artwork" >
         </activity>
+        <activity
+            android:name="com.dy.easale.Controller.ArtworkListActivity"
+            android:label="@string/title_activity_artwork_list" >
+        </activity>
     </application>
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 </manifest>

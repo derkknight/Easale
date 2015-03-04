@@ -2,15 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dy.easale.ArtworkListFragment">
+    tools:context="com.dy.easale.EventFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <ListView
-        android:id="@+id/eventFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true">
+
+        <TextView android:layout_width="fill_parent" android:text="WHATSYPOIOASJD" android:layout_height="fill_parent"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="100dp">
+        <ListView
+            android:id="@id/android:list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         </ListView>
+    </RelativeLayout>
+
+
 
 
 </FrameLayout>

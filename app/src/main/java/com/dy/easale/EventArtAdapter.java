@@ -1,12 +1,14 @@
 package com.dy.easale;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.dy.easale.Model.Artwork;
 import com.dy.easale.Model.Event;
 
 import java.util.ArrayList;
@@ -15,11 +17,11 @@ import java.util.ArrayList;
  * Created by Derick Yung on 9/15/2014.
  */
 
-public class EventArtAdapter extends ArrayAdapter<Event> {
+public class EventArtAdapter extends ArrayAdapter<Artwork> {
     private Context context;
-    private ArrayList<Event> data;
+    private ArrayList<Artwork> data;
 
-    public EventArtAdapter(Context context, ArrayList<Event> data) {
+    public EventArtAdapter(Context context, ArrayList<Artwork> data) {
         super(context, R.layout.eventart_row, data);
         this.context = context;
         this.data = data;
@@ -33,11 +35,11 @@ public class EventArtAdapter extends ArrayAdapter<Event> {
         View row = inflater.inflate(R.layout.eventart_row, parent, false);
         TextView name = (TextView) row.findViewById(R.id.name);
         TextView total = (TextView) row.findViewById(R.id.total);
-        ImageView icon = (ImageView) row.findViewById(R.id.icon);
+        ImageView icon = (ImageView) row.findViewById(R.id.eventIcon);
 
-        name.setText(data.get(i).getName());
-        total.setText(data.get(i).getTotal());
-        icon.setImageResource(R.drawable.ic_launcher);
+        name.setText(data.get(i).getTitle());
+        total.setText(data.get(i).getPrice());
+        icon.setImageURI(Uri.parse(data.get(i).getIcon()));
         return row;
     }
 }

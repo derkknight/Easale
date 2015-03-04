@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
 
     ActionBar.Tab alTab;
     ActionBar.Tab eTab;
-    ArtworkListFragment artworkListFragment = new ArtworkListFragment();
+    ManageFragment artworkListFragment = new ManageFragment();
     EventFragment eventFragment = new EventFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
