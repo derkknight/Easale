@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                tools:context="com.dy.easale.Controller.AddEventArtActivity">
+
+    <TextView
+            android:text="Please select items associated with this event"
+            android:id="@+id/eventArtLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <GridView
+            android:id="@+id/eventArtworkGrid"
+            android:layout_below="@id/eventArtLabel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    </GridView>
+    <Button
+        android:id="@+id/btnEventArt"
+        android:text="OK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/eventArtLabel"
+        android:onClick="SaveEventArts"
+        >
+    </Button>
+
+</RelativeLayout>
