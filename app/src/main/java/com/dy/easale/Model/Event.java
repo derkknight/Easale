@@ -5,20 +5,32 @@ import java.util.ArrayList;
 /**
  * Created by Derick Yung on 11/3/2014.
  */
-public class Event extends ArrayList<Sale> {
-    private String name;
+public class Event {
+    private String title;
+    private int id;
+    private String description;
+    private String icon;
 
-    public Event(String name)
+    public Event(String title, String description, String icon)
     {
-        this.name = name;
+        this.title = title;
+        this.description = description;
+        this.icon = icon;
     }
 
-    public String getName() {return name;}
-
-    public int getTotal()
+    public Event(int id, String title, String description, String icon)
     {
-        this.get(0);
-        return 0;
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.icon = icon;
     }
 
+    public String getTitle() {return title;}
+
+    public int getId() {return this.id;}
+
+    public String getDescription() {return this.description;}
+
+    public String getIcon() {return this.icon;}
 }

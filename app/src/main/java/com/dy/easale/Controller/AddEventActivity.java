@@ -6,37 +6,34 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+import android.util.Log;
+import android.view.*;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
-import com.dy.easale.ArtworkAdapter;
 import com.dy.easale.FileHelper;
-import com.dy.easale.Model.Artwork;
+import com.dy.easale.Model.Event;
 import com.dy.easale.R;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-
-public class AddArtworkActivity extends Activity {
-    String imagePath;
-    Bitmap imageBitmap;
+public class AddEventActivity extends Activity {
+    String _imagePath;
+    Bitmap _imageBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_artwork);
+        setContentView(R.layout.activity_add_event);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.add_artwork, menu);
+        getMenuInflater().inflate(R.menu.menu_add_event, menu);
         return true;
     }
 
@@ -46,9 +43,12 @@ public class AddArtworkActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -73,9 +73,9 @@ public class AddArtworkActivity extends Activity {
                     {
                         Uri imageUri = imageReturnedIntent.getData();
                         InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                        imageBitmap = BitmapFactory.decodeStream(imageStream);
-                        ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
-                        imageButton.setImageBitmap(imageBitmap);
+                        _imageBitmap = BitmapFactory.decodeStream(imageStream);
+                        ImageButton imageButton = (ImageButton) findViewById(R.id.edit_event_image_button);
+                        imageButton.setImageBitmap(_imageBitmap);
                     }
                     catch (IOException e)
                     {
@@ -85,45 +85,35 @@ public class AddArtworkActivity extends Activity {
                 }
         }
     }
-
-    public void saveArtwork(View view)
+    public void openAddEventArtActivity(long eventId)
     {
-        EditText edit_title = (EditText) findViewById(R.id.edit_title);
-        EditText edit_price = (EditText) findViewById(R.id.edit_price);
-        EditText edit_description = (EditText) findViewById(R.id.edit_description);
+        Intent intent = new Intent(this, AddEventArtActivity.class);
+        intent.putExtra("eventId", eventId);
+        Log.d("data", eventId+"");
+        this.startActivity(intent);
+    }
 
-        String title = edit_title.getText().toString();
-        String price = edit_price.getText().toString();
-        String description = edit_description.getText().toString();
+    public void saveEvent(View view)
+    {
+        EditText editTitle = (EditText) findViewById(R.id.edit_event_title);
+        EditText editDescription = (EditText) findViewById(R.id.edit_event_description);
 
-        if (title.length() == 0)
-        {
-            Toast.makeText(view.getContext(),"Please include a title", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (price.length() == 0)
-        {
-            Toast.makeText(view.getContext(),"Please include the price", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (description.length() == 0)
-        {
-            description = "No description.";
-            return;
-        }
+        String title = editTitle.getText().toString();
+        String description = editDescription.getText().toString();
 
         FileHelper.ImageProvider imageProvider = new FileHelper.ImageProvider();
         FileHelper.DbProvider dbProvider = new FileHelper.DbProvider(view.getContext());
 
-        imagePath = imageProvider.saveImage(imageBitmap);
-        dbProvider.createArtwork(new Artwork(title, price, imagePath));
+        _imagePath = imageProvider.saveImage(_imageBitmap);
 
+        long eventId = dbProvider.createEvent(new Event(title, description, _imagePath));
 
         String message = "'" + title + "' has been saved";
         Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
 
         finish();
+
+        openAddEventArtActivity(eventId);
+
     }
 }

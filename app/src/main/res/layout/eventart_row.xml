@@ -6,8 +6,8 @@
     <!-- Icon -->
     <ImageView
         android:id="@+id/eventIcon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginRight="10dp" />
 
 
@@ -31,15 +31,16 @@
         android:layout_marginTop="3dip"
         android:layout_toRightOf="@+id/eventIcon"
         android:textSize="10dp" />
+    
+    <CheckBox
+            android:id="@+id/cbxEventArt"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false">
+    </CheckBox>
 
-    <!-- Plus Button -->
-    <ImageButton
-        android:id="@+id/addImageButton"
-        android:layout_height="fill_parent"
-        android:layout_width="50dp"
-        android:layout_alignParentRight="true"
-        android:src="@android:drawable/ic_input_add">
-    </ImageButton>
+
 
 
 </RelativeLayout>

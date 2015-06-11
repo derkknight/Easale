@@ -3,13 +3,16 @@ package com.dy.easale.Model;
 /**
  * Created by Derick Yung on 9/17/2014.
  */
-public class Sale extends Artwork {
+public class Sale {
 
-    String time;
+    String _title = "";
+    String _price = "";
+    String _time = "";
 
-    public Sale(Artwork artwork, String time)
+    public Sale(String title, String price, String time)
     {
-        super(artwork.getTitle(), artwork.getPrice(), artwork.getIcon());
-        this.time = time;
+        _title = title;
+        _price = price;
+        _time = time;
     }
 }

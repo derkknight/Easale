@@ -1,6 +1,7 @@
 package com.dy.easale;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.dy.easale.Controller.DetailArtworkActivity;
 import com.dy.easale.Model.Artwork;
 
 import java.util.ArrayList;
@@ -36,9 +38,42 @@ public class ArtworkAdapter extends ArrayAdapter<Artwork> {
         TextView price = (TextView) row.findViewById(R.id.price);
         ImageView icon = (ImageView) row.findViewById(R.id.icon);
 
+        final Artwork artwork = data.get(i);
+
         title.setText(data.get(i).getTitle());
         price.setText(data.get(i).getPrice());
         icon.setImageURI(Uri.parse(data.get(i).getIcon()));
+
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                openDetailArtworkActivity(artwork);
+            }
+
+        });
+
+        icon.setOnLongClickListener(new View.OnLongClickListener()
+        {
+            @Override
+            public boolean onLongClick(View v)
+            {
+                FileHelper.DbProvider dbProvider = new FileHelper.DbProvider(context);
+                dbProvider.deleteArtwork(artwork.getId());
+                return true;
+            }
+        });
+
         return row;
+    }
+
+    public void openDetailArtworkActivity(Artwork artwork)
+    {
+        Intent intent = new Intent(context, DetailArtworkActivity.class);
+        intent.putExtra("title", artwork.getTitle());
+        intent.putExtra("price", artwork.getPrice());
+        intent.putExtra("icon", artwork.getIcon());
+
+        context.startActivity(intent);
     }
 }

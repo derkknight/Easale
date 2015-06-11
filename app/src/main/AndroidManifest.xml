@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.dy.easale.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,17 +19,41 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.dy.easale.Controller.AddArtworkActivity"
+            android:name=".Controller.AddArtworkActivity"
             android:label="@string/title_activity_add_artwork"
             android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
         <activity
-            android:name="com.dy.easale.Controller.DetailArtworkActivity"
+            android:name=".Controller.DetailArtworkActivity"
             android:label="@string/title_activity_detail_artwork" >
         </activity>
         <activity
-            android:name="com.dy.easale.Controller.ArtworkListActivity"
+            android:name=".Controller.ArtworkListActivity"
             android:label="@string/title_activity_artwork_list" >
+        </activity>
+        <activity
+            android:name=".Controller.AddEventForArtwork"
+            android:label="@string/title_activity_add_event_for_artwork" >
+        </activity>
+        <activity
+            android:name=".Controller.AddEventActivity"
+            android:label="@string/title_activity_add_event" >
+        </activity>
+        <activity
+            android:name=".Controller.EventListActivity"
+            android:label="@string/title_activity_event_list" >
+        </activity>
+        <activity
+            android:name=".Controller.AddEventArtActivity"
+            android:label="@string/title_activity_add_event_art" >
+        </activity>
+        <activity
+            android:name=".Controller.DetailEventActivity"
+            android:label="@string/title_activity_detail_event" >
+        </activity>
+        <activity
+            android:name=".Controller.EditSaleActivity"
+            android:label="@string/title_activity_edit_sale" >
         </activity>
     </application>
 

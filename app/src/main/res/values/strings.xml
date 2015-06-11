@@ -8,5 +8,11 @@
     <string name="title_activity_add_artwork">New Artwork</string>
     <string name="title_activity_detail_artwork">Detail</string>
     <string name="title_activity_artwork_list">ArtworkListActivity</string>
+    <string name="title_activity_add_event_for_artwork">AddEventForArtwork</string>
+    <string name="title_activity_add_event">AddEventActivity</string>
+    <string name="title_activity_event_list">EventListActivity</string>
+    <string name="title_activity_add_event_art">AddEventArtActivity</string>
+    <string name="title_activity_detail_event">DetailEventActivity</string>
+    <string name="title_activity_edit_sale">EditSaleActivity</string>
 
 </resources>

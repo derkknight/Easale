@@ -2,12 +2,11 @@ package com.dy.easale;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import com.dy.easale.Model.Artwork;
 import com.dy.easale.Model.Event;
 
@@ -28,14 +27,27 @@ public class EventArtAdapter extends ArrayAdapter<Artwork> {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup parent) {
+    public View getView(int i, View view, final ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        Log.d("TAGGING","" + parent.getId());
+
+        final GridView gridParent = (GridView) parent;
+
+        /*
+        GridView gridView = (GridView) view.findViewById(R.id.eventArtworkGrid);
+        gridView.setItemChecked(i, true);
+        */
+
 
         View row = inflater.inflate(R.layout.eventart_row, parent, false);
         TextView name = (TextView) row.findViewById(R.id.name);
         TextView total = (TextView) row.findViewById(R.id.total);
         ImageView icon = (ImageView) row.findViewById(R.id.eventIcon);
+        final CheckBox checkBox = (CheckBox) row.findViewById(R.id.cbxEventArt);
+        checkBox.setClickable(false);
+        final int position = i;
 
         name.setText(data.get(i).getTitle());
         total.setText(data.get(i).getPrice());
