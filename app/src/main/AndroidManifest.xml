@@ -44,6 +44,10 @@
             android:label="@string/title_activity_event_list" >
         </activity>
         <activity
+            android:name=".Controller.EventToActivateListActivity"
+            android:label="@string/title_activity_event_list" >
+        </activity>
+        <activity
             android:name=".Controller.AddEventArtActivity"
             android:label="@string/title_activity_add_event_art" >
         </activity>

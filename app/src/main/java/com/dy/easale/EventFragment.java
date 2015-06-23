@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.dy.easale.Controller.ArtworkListActivity;
 import com.dy.easale.Controller.EventListActivity;
+import com.dy.easale.Controller.EventToActivateListActivity;
 import com.dy.easale.Model.Artwork;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class EventFragment extends ListFragment {
         switch (position)
         {
             case 0:
-                Intent intent = new Intent(getActivity(), ArtworkListActivity.class);
+                Intent intent = new Intent(getActivity(), EventToActivateListActivity.class);
                 getActivity().startActivity(intent);
                 break;
 

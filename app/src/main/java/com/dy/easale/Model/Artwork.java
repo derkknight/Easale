@@ -8,6 +8,7 @@ public class Artwork {
     private String title;
     private String price;
     private String icon;
+    private int _sellCount = 0;
 
     public Artwork(String title, String price, String icon)
     {
@@ -22,6 +23,15 @@ public class Artwork {
         this.title = title;
         this.price = price;
         this.icon = icon;
+    }
+
+    public Artwork(int id, String title, String price, String icon, int sellCount)
+    {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.icon = icon;
+        this._sellCount = sellCount;
     }
 
     public int getId() { return this.id; }
@@ -47,5 +57,9 @@ public class Artwork {
 
     public String getIcon() { return this.icon; }
     public void setIcon(String icon) { this.icon = icon; }
+
+    public int GetSellCount() { return this._sellCount; }
+    public void SetSellCount(Integer sellCount) { this._sellCount = sellCount; }
+
 
 }
