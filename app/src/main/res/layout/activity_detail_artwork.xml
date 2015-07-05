@@ -2,26 +2,91 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context="com.dy.easale.Controller.DetailArtworkActivity">
+                tools:context="com.dy.easale.Controller.DetailActivities.DetailArtworkActivity">
+
+    <ImageView
+            android:id="@+id/imageView_detail_artwork"
+               android:layout_width="fill_parent"
+               android:layout_height="250dp"
+               android:scaleType="centerCrop"
+               />
+
+    <TextView
+            android:id="@+id/textViewTitleLabel"
+            android:text="@string/label_title_div"
+            android:textColor="#33b5e5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_below="@id/imageView_detail_artwork"/>
+
+    <View
+            android:id="@+id/viewTitleDivide"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#33b5e5"
+            android:layout_below="@id/textViewTitleLabel"/>
 
     <TextView
             android:id="@+id/artwork_title"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewTitleDivide"/>
+
+    <TextView
+            android:id="@+id/textViewPriceLabel"
+            android:text="@string/label_price_div"
+            android:textColor="#33b5e5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_below="@id/artwork_title"/>
+
+    <View
+            android:id="@+id/viewPriceDivide"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#33b5e5"
+            android:layout_below="@id/textViewPriceLabel"/>
 
     <TextView
             android:id="@+id/artwork_price"
-            android:layout_below="@+id/artwork_title"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_below="@+id/viewPriceDivide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+
+    <TextView
+            android:id="@+id/textViewSalesLabel"
+            android:text="@string/label_sales_div"
+            android:textColor="#33b5e5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_below="@id/artwork_price"/>
+
+    <View
+            android:id="@+id/viewDescriptionDivide"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#33b5e5"
+            android:layout_below="@id/textViewSalesLabel"/>
+
     <TextView
             android:id="@+id/artwork_description"
-            android:layout_below="@+id/artwork_price"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_below="@+id/viewDescriptionDivide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

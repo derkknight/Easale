@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="com.dy.easale.Controller.EventListActivity">
+      tools:context="com.dy.easale.Controller.ListActivities.EventListActivity">
       <item android:id="@+id/action_add_event"
             android:title="Add"
             android:showAsAction="always" />

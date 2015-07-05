@@ -1,6 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="com.dy.easale.Controller.EditSaleActivity">
+      tools:context="com.dy.easale.Controller.ListActivities.EditSaleActivity">
+
+      <item android:id="@+id/action_save_sales"
+            android:title="Save"
+            android:showAsAction="always" />
+
     <item android:id="@+id/action_settings"
           android:title="@string/action_settings"
           android:orderInCategory="100"

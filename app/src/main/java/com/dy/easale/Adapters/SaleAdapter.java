@@ -1,8 +1,9 @@
-package com.dy.easale;
+package com.dy.easale.Adapters;
 
 import android.content.Context;
 import android.media.Image;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.dy.easale.Model.Artwork;
+import com.dy.easale.R;
 
 import java.util.ArrayList;
 
@@ -44,10 +46,15 @@ public class SaleAdapter extends ArrayAdapter<Artwork>
 
         final Artwork sale = data.get(i);
 
+        if (sale.GetSellCount() <= 0)
+            btnDecrement.setEnabled(false);
+        else
+            btnDecrement.setEnabled(true);
+
         imgIconView.setImageURI(Uri.parse(data.get(i).getIcon()));
         txtTitle.setText(sale.getTitle());
         txtPrice.setText(sale.getPrice());
-        txtCount.setText(Integer.toString(sale.getId())); //TODO: Add Sale Number
+        txtCount.setText(Integer.toString(sale.GetSellCount())); //TODO: Add Sale Number
         btnIncrement.setImageResource(R.drawable.ic_launcher);
         btnDecrement.setImageResource(R.drawable.ic_launcher);
 
@@ -57,6 +64,17 @@ public class SaleAdapter extends ArrayAdapter<Artwork>
         public void onClick(View v)
             {
                 sale.SetSellCount(sale.GetSellCount() + 1);
+                notifyDataSetChanged();
+            }
+        });
+
+        btnDecrement.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                sale.SetSellCount(sale.GetSellCount() - 1);
+                notifyDataSetChanged();
             }
         });
 

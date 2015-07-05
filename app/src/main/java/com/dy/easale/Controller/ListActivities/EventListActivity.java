@@ -1,4 +1,4 @@
-package com.dy.easale.Controller;
+package com.dy.easale.Controller.ListActivities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,18 +6,18 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import com.dy.easale.ActiveEventAdapter;
-import com.dy.easale.EventAdapter;
+import com.dy.easale.Controller.AddActivities.AddEventActivity;
+import com.dy.easale.Adapters.EventAdapter;
 import com.dy.easale.FileHelper;
 import com.dy.easale.Model.Event;
 import com.dy.easale.R;
 
 import java.util.ArrayList;
 
-public class EventToActivateListActivity extends Activity {
+public class EventListActivity extends Activity {
 
     ArrayList<Event> _eventList = new ArrayList<Event>();
-    private ActiveEventAdapter _adapter;
+    private EventAdapter _adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +29,7 @@ public class EventToActivateListActivity extends Activity {
 
 
         _eventList = dbProvider.getEvents();
-        _adapter = new ActiveEventAdapter(this, _eventList);
+        _adapter = new EventAdapter(this, _eventList);
 
         eventListView.setAdapter(_adapter);
     }

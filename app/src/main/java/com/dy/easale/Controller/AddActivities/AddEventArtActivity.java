@@ -1,15 +1,14 @@
-package com.dy.easale.Controller;
+package com.dy.easale.Controller.AddActivities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.*;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.GridView;
-import com.dy.easale.EventArtAdapter;
+import com.dy.easale.Adapters.EventArtAdapter;
 import com.dy.easale.FileHelper;
 import com.dy.easale.Model.Artwork;
 import com.dy.easale.Model.Event;
@@ -110,16 +109,6 @@ public class AddEventArtActivity extends Activity implements AdapterView.OnItemC
             default:
                 return false;
         }
-    }
-
-
-
-    public void SaveEventArt(View view)
-    {
-        FileHelper.DbProvider dbProvider = new FileHelper.DbProvider(view.getContext());
-
-        dbProvider.createArtworkEvent(new Artwork("","",""), new Event("","",""));
-
     }
 
     public void SaveEventArts(View view)

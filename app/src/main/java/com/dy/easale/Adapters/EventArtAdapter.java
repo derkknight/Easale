@@ -1,4 +1,4 @@
-package com.dy.easale;
+package com.dy.easale.Adapters;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.dy.easale.Model.Artwork;
 import com.dy.easale.Model.Event;
+import com.dy.easale.R;
 
 import java.util.ArrayList;
 

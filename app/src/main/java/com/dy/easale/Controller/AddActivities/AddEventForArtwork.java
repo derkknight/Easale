@@ -1,45 +1,26 @@
-package com.dy.easale.Controller;
+package com.dy.easale.Controller.AddActivities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
-import com.dy.easale.FileHelper;
-import com.dy.easale.Model.Artwork;
 import com.dy.easale.R;
-import com.dy.easale.SaleAdapter;
 
-import java.util.ArrayList;
-
-public class EditSaleActivity extends Activity {
-
-    private ArrayList<Artwork> _artworks;
+public class AddEventForArtwork extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_sale);
-
-        Bundle extras = getIntent().getExtras();
-
-
-        FileHelper.DbProvider dbProvider = new FileHelper.DbProvider(this);
-        _artworks = dbProvider.GetArtworkEvent(extras.getInt("id"));
-
-        ListView salesList = (ListView) findViewById(R.id.SalesListView);
-        salesList.setAdapter(new SaleAdapter(this, _artworks));
-
-
+        setContentView(R.layout.activity_add_event_for_artwork);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_edit_sale, menu);
+        getMenuInflater().inflate(R.menu.menu_add_event_for_artwork, menu);
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

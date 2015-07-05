@@ -1,16 +1,21 @@
-package com.dy.easale;
+package com.dy.easale.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.dy.easale.Controller.DetailArtworkActivity;
+import com.dy.easale.Controller.DetailActivities.DetailArtworkActivity;
+import com.dy.easale.FileHelper;
 import com.dy.easale.Model.Artwork;
+import com.dy.easale.R;
 
 import java.util.ArrayList;
 
@@ -33,6 +38,9 @@ public class ArtworkAdapter extends ArrayAdapter<Artwork> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        //RelativeLayout layout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.artwork_row, parent, false);
+
+
         View row = inflater.inflate(R.layout.artwork_row, parent, false);
         TextView title = (TextView) row.findViewById(R.id.title);
         TextView price = (TextView) row.findViewById(R.id.price);
@@ -41,18 +49,20 @@ public class ArtworkAdapter extends ArrayAdapter<Artwork> {
         final Artwork artwork = data.get(i);
 
         title.setText(data.get(i).getTitle());
-        price.setText(data.get(i).getPrice());
+        Log.d("Altenter", "" + data.get(i).getConvertedPrice());
+        price.setText(Double.toString(data.get(i).getConvertedPrice()));
         icon.setImageURI(Uri.parse(data.get(i).getIcon()));
 
-        icon.setOnClickListener(new View.OnClickListener() {
+        icon.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
                 openDetailArtworkActivity(artwork);
             }
-
         });
 
+        /**
         icon.setOnLongClickListener(new View.OnLongClickListener()
         {
             @Override
@@ -63,16 +73,20 @@ public class ArtworkAdapter extends ArrayAdapter<Artwork> {
                 return true;
             }
         });
-
+        **/
         return row;
     }
+
 
     public void openDetailArtworkActivity(Artwork artwork)
     {
         Intent intent = new Intent(context, DetailArtworkActivity.class);
         intent.putExtra("title", artwork.getTitle());
-        intent.putExtra("price", artwork.getPrice());
+        intent.putExtra("price", artwork.getConvertedPrice());
         intent.putExtra("icon", artwork.getIcon());
+
+        FileHelper.DbProvider dbProvider = new FileHelper.DbProvider(context);
+        intent.putExtra("sellCount", dbProvider.GetSellCount(artwork.getId()));
 
         context.startActivity(intent);
     }

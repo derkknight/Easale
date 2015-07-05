@@ -14,9 +14,7 @@ import com.dy.easale.Model.Event;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.Iterator;
 
 /**
  * Created by Derick Yung on 2/19/2015.
@@ -51,126 +49,20 @@ public class FileHelper {
         }
     }
 
-    public static class TextProvider
-    {
-        File artworkText = new File(folderPath + artworkFileName);
-
-        public void addArtwork(Artwork targetArtwork)
-        {
-            File folderDirectory = new File(folderPath);
-            folderDirectory.mkdirs();
-
-            if (!artworkText.exists())
-            {
-                try
-                {
-                    artworkText.createNewFile();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-
-            try
-            {
-                BufferedWriter buff = new BufferedWriter(new FileWriter(artworkText, true));
-                String artworkString = String.format("%s,%s,%s%n", targetArtwork.getTitle(), targetArtwork.getPrice(), targetArtwork.getIcon());
-                buff.append(artworkString);
-                buff.close();
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        public void addArtwork(String title, String price, String imageURI)
-        {
-            File folderDirectory = new File(folderPath);
-            folderDirectory.mkdirs();
-
-            if (!artworkText.exists())
-            {
-                try
-                {
-                    artworkText.createNewFile();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-
-            try
-            {
-                BufferedWriter buff = new BufferedWriter(new FileWriter(artworkText, true));
-                String artworkString = String.format("%s,%s,%s%n", title, price, imageURI);
-                buff.append(artworkString);
-                buff.close();
-                Log.d("HERPS", artworkText.getAbsolutePath());
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        public ArrayList<Artwork> getAllArtwork()
-        {
-            ArrayList<Artwork> artworksArray = new ArrayList<Artwork>();
-            BufferedReader buff = null;
-
-            try
-            {
-                String currentLine;
-                buff = new BufferedReader(new FileReader(artworkText));
-
-                while((currentLine = buff.readLine()) != null)
-                {
-                    String[] artworkString = currentLine.split(",");
-                    if (!(artworkString.length < 3))
-                    {
-                        Artwork artwork = new Artwork(artworkString[0], artworkString[1], artworkString[2]);
-                        artworksArray.add(artwork);
-                    }
-                }
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            finally
-            {
-                try
-                {
-                    if (buff != null) buff.close();
-                }
-                catch (IOException ex)
-                {
-                    ex.printStackTrace();
-                }
-            }
-            return artworksArray;
-        }
-    }
-
     public static class DbProvider extends SQLiteOpenHelper
     {
 
         private static final String DATABASE_NAME = "artworksManager";
-        private static final int DATABASE_VERSION = 5;
+        private static final int DATABASE_VERSION = 7;
 
         private static final String TABLE_ARTWORK = "artworks";
         private static final String TABLE_EVENT = "events";
-        private static final String TABLE_ARTWORK_EVENT = "artwork_event";
         private static final String TABLE_SALE = "sales";
 
         //Common column names
         private static final String KEY_ID = "id";
         private static final String KEY_NAME = "name";
         private static final String KEY_URI = "imguri";
-        private static final String CREATED_AT = "created";
 
         //TABLE_ARTWORK columns
         private static final String KEY_PRICE = "price";
@@ -178,9 +70,10 @@ public class FileHelper {
         //TABLE_EVENT columns
         private static final String KEY_DESCRIPTION = "description";
 
-        //TABLE_ARTWORK_EVENT columns
+        //TABLE_SALE columns
         private static final String KEY_ARTWORK_ID = "artwork_id";
         private static final String KEY_EVENT_ID = "event_id";
+        private static final String KEY_COUNT = "count";
 
         private static final String CREATE_TABLE_ARTWORK = "CREATE TABLE "
                 + TABLE_ARTWORK + "(" + KEY_ID + " INTEGER PRIMARY KEY," +
@@ -191,27 +84,40 @@ public class FileHelper {
                 + TABLE_EVENT + "(" + KEY_ID + " INTEGER PRIMARY KEY," +
                 KEY_NAME + " TEXT," + KEY_DESCRIPTION + " TEXT," + KEY_URI + " TEXT" + ")";
 
-        private static final String CREATE_TABLE_ARTWORK_EVENT = "CREATE TABLE "
-                + TABLE_ARTWORK_EVENT + "(" + KEY_ID + " INTEGER PRIMARY KEY," +
-                KEY_ARTWORK_ID + " INTEGER," + KEY_EVENT_ID + " INTEGER" + ")";
+        private static final String CREATE_TABLE_SALE = "CREATE TABLE "
+                + TABLE_SALE + "(" + KEY_ID + " INTEGER PRIMARY KEY," +
+                KEY_ARTWORK_ID + " INTEGER," + KEY_EVENT_ID + " INTEGER" + "," +
+                KEY_COUNT + " INTEGER," + "FOREIGN KEY("
+                + KEY_ARTWORK_ID +") REFERENCES " + TABLE_ARTWORK + "(" + KEY_ID + ") ON DELETE CASCADE" +
+                "," + "FOREIGN KEY(" + KEY_EVENT_ID + ") REFERENCES " + TABLE_EVENT +
+                "(" + KEY_ID + ") ON DELETE CASCADE" + ")";
+
+        private static final String ENABLE_FOREIGN_KEYS = "PRAGMA foreign_keys=ON;";
 
         public DbProvider(Context context)
         {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
+        @Override
+        public void onOpen(SQLiteDatabase db)
+        {
+            super.onOpen(db);
+            db.execSQL(ENABLE_FOREIGN_KEYS);
+        }
+
         public void onCreate(SQLiteDatabase database)
         {
             database.execSQL(CREATE_TABLE_ARTWORK);
             database.execSQL(CREATE_TABLE_EVENT);
-            database.execSQL(CREATE_TABLE_ARTWORK_EVENT);
+            database.execSQL(CREATE_TABLE_SALE);
         }
 
         public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion)
         {
             database.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTWORK);
             database.execSQL("DROP TABLE IF EXISTS " + TABLE_EVENT);
-            database.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTWORK_EVENT);
+            database.execSQL("DROP TABLE IF EXISTS " + TABLE_SALE);
             onCreate(database);
         }
 
@@ -250,7 +156,7 @@ public class FileHelper {
             values.put(KEY_ARTWORK_ID, artwork.getId());
             values.put(KEY_EVENT_ID, event.getId());
 
-            long artworkEventId = database.insert(TABLE_ARTWORK_EVENT, null, values);
+            long artworkEventId = database.insert(TABLE_SALE, null, values);
 
             return artworkEventId;
         }
@@ -289,7 +195,7 @@ public class FileHelper {
                 }
             }
 
-            String query = "INSERT INTO " + TABLE_ARTWORK_EVENT + " " + args;
+            String query = "INSERT INTO " + TABLE_SALE + " " + args;
 
             Log.d("data", query);
 
@@ -300,24 +206,6 @@ public class FileHelper {
 
 
         //Read
-        public Artwork getArtwork(long artwork_id)
-        {
-            SQLiteDatabase database = this.getReadableDatabase();
-
-            String selectQuery = "SELECT * FROM " + TABLE_ARTWORK + " WHERE " + KEY_ID + " = " + artwork_id;
-
-            Cursor c = database.rawQuery(selectQuery, null);
-
-            if (c != null) c.moveToFirst();
-
-            int id = c.getInt(c.getColumnIndex(KEY_ID));
-            String title = c.getString(c.getColumnIndex(KEY_NAME));
-            String price = c.getString(c.getColumnIndex(KEY_PRICE));
-            String uri = c.getString(c.getColumnIndex(KEY_URI));
-
-            return new Artwork(id, title, price, uri);
-        }
-
         public ArrayList<Artwork> getArtworks()
         {
             ArrayList<Artwork> artworks = new ArrayList<Artwork>();
@@ -332,7 +220,7 @@ public class FileHelper {
                 {
                     int id = c.getInt(c.getColumnIndex(KEY_ID));
                     String title = c.getString(c.getColumnIndex(KEY_NAME));
-                    String price = c.getString(c.getColumnIndex(KEY_PRICE));
+                    int price = c.getInt(c.getColumnIndex(KEY_PRICE));
                     String uri = c.getString(c.getColumnIndex(KEY_URI));
                     artworks.add(new Artwork(id, title, price, uri));
                     c.moveToNext();
@@ -368,9 +256,9 @@ public class FileHelper {
         public ArrayList<Artwork> GetArtworkEvent(int eventId)
         {
             ArrayList<Artwork> artworks = new ArrayList<Artwork>();
-            String selectQuery = "SELECT " + TABLE_ARTWORK + ".* FROM " + TABLE_EVENT + " INNER JOIN " + TABLE_ARTWORK_EVENT + " ON "
-                    + TABLE_ARTWORK_EVENT + "." + KEY_EVENT_ID + " = " + TABLE_EVENT +"." + KEY_ID + " INNER JOIN " + TABLE_ARTWORK +
-                    " ON " + TABLE_ARTWORK_EVENT +"." + KEY_ARTWORK_ID +"=" +TABLE_ARTWORK +"."+KEY_ID +
+            String selectQuery = "SELECT " + TABLE_ARTWORK + ".*," + TABLE_SALE + "." + KEY_COUNT + " FROM " + TABLE_EVENT + " INNER JOIN " + TABLE_SALE + " ON "
+                    + TABLE_SALE + "." + KEY_EVENT_ID + " = " + TABLE_EVENT +"." + KEY_ID + " INNER JOIN " + TABLE_ARTWORK +
+                    " ON " + TABLE_SALE +"." + KEY_ARTWORK_ID +"=" +TABLE_ARTWORK +"."+KEY_ID +
                     " WHERE " + TABLE_EVENT + "." + KEY_ID + "= ?"  +";";
 
             Log.d("DATABASEE", selectQuery + eventId);
@@ -384,9 +272,12 @@ public class FileHelper {
                 {
                     int id = c.getInt(c.getColumnIndex(KEY_ID));
                     String title = c.getString(c.getColumnIndex(KEY_NAME));
-                    String price = c.getString(c.getColumnIndex(KEY_PRICE));
+                    int price = c.getInt(c.getColumnIndex(KEY_PRICE));
                     String uri = c.getString(c.getColumnIndex(KEY_URI));
-                    artworks.add(new Artwork(id, title, price, uri));
+                    int sellCount = c.getInt(c.getColumnIndex(KEY_COUNT));
+                    //artworks.add(new Artwork(id, title, price, uri));
+                    artworks.add(new Artwork(id, title, price, uri, sellCount));
+
                     c.moveToNext();
                 }
             }
@@ -394,7 +285,33 @@ public class FileHelper {
             return artworks;
         }
 
+        public int GetSellCount(int artworkId)
+        {
+            SQLiteDatabase database = this.getReadableDatabase();
+
+            String selectQuery = "SELECT SUM(" + KEY_COUNT + ") FROM " + TABLE_SALE + " WHERE " +
+                    TABLE_SALE + "." + KEY_ARTWORK_ID + "" + "= ?;";
+
+            Cursor c = database.rawQuery(selectQuery, new String[]{Integer.toString(artworkId)});
+            c.moveToFirst();
+
+            return c.getInt(0);
+        }
+
         //Update
+        public void StoreSaleCount(ArrayList<Artwork> sales, int eventId)
+        {
+            SQLiteDatabase database = this.getWritableDatabase();
+
+            for (int i = 0; i < sales.size(); i++)
+            {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(KEY_COUNT, sales.get(i).GetSellCount());
+                String stringFilter = KEY_ARTWORK_ID + "=? AND " + KEY_EVENT_ID + "=?";
+                database.update(TABLE_SALE, contentValues, stringFilter, new String[]{Integer.toString(sales.get(i).getId()),Integer.toString(eventId)});
+            }
+        }
+
         //Delete
         public void deleteArtwork(int artworkId)
         {

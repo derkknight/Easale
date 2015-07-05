@@ -11,9 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.dy.easale.Controller.AddEventActivity;
-import com.dy.easale.Controller.ArtworkListActivity;
-import com.dy.easale.Controller.EventListActivity;
+import com.dy.easale.Controller.ListActivities.ArtworkListActivity;
+import com.dy.easale.Controller.ListActivities.EventListActivity;
 
 /**
  * Created by Derick Yung on 9/16/2014.

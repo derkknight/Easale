@@ -27,8 +27,8 @@ public class MainActivity extends Activity {
 
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        alTab = actionBar.newTab().setText("Artworks");
-        eTab = actionBar.newTab().setText("Events");
+        alTab = actionBar.newTab().setText(R.string.label_manage);
+        eTab = actionBar.newTab().setText(R.string.label_sale);
 
         alTab.setTabListener(new TabListener(artworkListFragment));
         eTab.setTabListener(new TabListener(eventFragment));

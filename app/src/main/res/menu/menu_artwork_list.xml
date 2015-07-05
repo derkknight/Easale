@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="com.dy.easale.Controller.ArtworkListActivity">
+      tools:context="com.dy.easale.Controller.ListActivities.ArtworkListActivity">
     <item android:id="@+id/action_add_artwork"
-            android:title="Add"
+            android:title="@string/label_add"
             android:showAsAction="always" />
     <item android:id="@+id/action_settings"
           android:title="@string/action_settings"

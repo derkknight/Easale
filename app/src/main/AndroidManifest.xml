@@ -19,44 +19,44 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Controller.AddArtworkActivity"
+            android:name=".Controller.AddActivities.AddArtworkActivity"
             android:label="@string/title_activity_add_artwork"
-            android:windowSoftInputMode="adjustPan|adjustResize" >
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
-            android:name=".Controller.DetailArtworkActivity"
+            android:name=".Controller.DetailActivities.DetailArtworkActivity"
             android:label="@string/title_activity_detail_artwork" >
         </activity>
         <activity
-            android:name=".Controller.ArtworkListActivity"
+            android:name=".Controller.ListActivities.ArtworkListActivity"
             android:label="@string/title_activity_artwork_list" >
         </activity>
         <activity
-            android:name=".Controller.AddEventForArtwork"
+            android:name=".Controller.AddActivities.AddEventForArtwork"
             android:label="@string/title_activity_add_event_for_artwork" >
         </activity>
         <activity
-            android:name=".Controller.AddEventActivity"
+            android:name=".Controller.AddActivities.AddEventActivity"
             android:label="@string/title_activity_add_event" >
         </activity>
         <activity
-            android:name=".Controller.EventListActivity"
+            android:name=".Controller.ListActivities.EventListActivity"
             android:label="@string/title_activity_event_list" >
         </activity>
         <activity
-            android:name=".Controller.EventToActivateListActivity"
+            android:name=".Controller.ListActivities.EventToActivateListActivity"
             android:label="@string/title_activity_event_list" >
         </activity>
         <activity
-            android:name=".Controller.AddEventArtActivity"
+            android:name=".Controller.AddActivities.AddEventArtActivity"
             android:label="@string/title_activity_add_event_art" >
         </activity>
         <activity
-            android:name=".Controller.DetailEventActivity"
+            android:name=".Controller.DetailActivities.DetailEventActivity"
             android:label="@string/title_activity_detail_event" >
         </activity>
         <activity
-            android:name=".Controller.EditSaleActivity"
+            android:name=".Controller.ListActivities.EditSaleActivity"
             android:label="@string/title_activity_edit_sale" >
         </activity>
     </application>

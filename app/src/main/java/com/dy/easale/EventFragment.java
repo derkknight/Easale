@@ -10,19 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.dy.easale.Controller.ArtworkListActivity;
-import com.dy.easale.Controller.EventListActivity;
-import com.dy.easale.Controller.EventToActivateListActivity;
-import com.dy.easale.Model.Artwork;
-
-import java.util.ArrayList;
+import com.dy.easale.Controller.ListActivities.EventListActivity;
+import com.dy.easale.Controller.ListActivities.EventToActivateListActivity;
 
 /**
  * Created by Derick Yung on 9/16/2014.
  */
 public class EventFragment extends ListFragment {
 
-    String[] options = new String[] { "Edit Ongoing Event Sales", "View Events" };
+    String[] options = new String[] { "Edit Ongoing Event Sales" };
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -56,11 +52,6 @@ public class EventFragment extends ListFragment {
                 Intent intent = new Intent(getActivity(), EventToActivateListActivity.class);
                 getActivity().startActivity(intent);
                 break;
-
-            case 1:
-                Intent eventListIntent = new Intent(getActivity(), EventListActivity.class);
-                getActivity().startActivity(eventListIntent);
-
         }
 
     }

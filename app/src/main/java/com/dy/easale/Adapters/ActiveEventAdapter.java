@@ -1,30 +1,28 @@
-package com.dy.easale;
+package com.dy.easale.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.dy.easale.Controller.DetailArtworkActivity;
-import com.dy.easale.Controller.DetailEventActivity;
-import com.dy.easale.Model.Artwork;
+import com.dy.easale.Controller.ListActivities.EditSaleActivity;
 import com.dy.easale.Model.Event;
+import com.dy.easale.R;
 
 import java.util.ArrayList;
 
 /**
  * Created by Derick Yung on 3/13/2015.
  */
-public class EventAdapter extends ArrayAdapter<Event> {
+public class ActiveEventAdapter extends ArrayAdapter<Event> {
     private Context context;
     private ArrayList<Event> data;
 
-    public EventAdapter(Context context, ArrayList<Event> data) {
+    public ActiveEventAdapter(Context context, ArrayList<Event> data) {
         super(context, R.layout.event_row, data);
         this.context = context;
         this.data = data;
@@ -49,7 +47,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
             @Override
             public void onClick(View v)
             {
-                openEventArtworkActivity(event);
+                openEditSaleActivity(event);
             }
 
         });
@@ -58,15 +56,10 @@ public class EventAdapter extends ArrayAdapter<Event> {
     }
 
 
-    public void openEventArtworkActivity(Event event)
+    public void openEditSaleActivity(Event event)
     {
-        Intent intent = new Intent(context, DetailEventActivity.class);
-        intent.putExtra("title", event.getTitle());
-        intent.putExtra("description", event.getDescription());
-        intent.putExtra("icon", event.getIcon());
+        Intent intent = new Intent(context, EditSaleActivity.class);
         intent.putExtra("id", event.getId());
-
-        Log.d("WALUIGI", Integer.toString(event.getId()));
 
         context.startActivity(intent);
     }

@@ -1,9 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="com.dy.easale.Controller.DetailArtworkActivity">
-    <item android:id="@+id/action_add_artwork"
-            android:title="Add"
-            android:showAsAction="always" />
+      tools:context="com.dy.easale.Controller.DetailActivities.DetailArtworkActivity">
     <item android:id="@+id/action_settings"
           android:title="@string/action_settings"
           android:orderInCategory="100"

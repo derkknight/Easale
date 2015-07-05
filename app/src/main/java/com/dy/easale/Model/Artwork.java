@@ -6,18 +6,18 @@ package com.dy.easale.Model;
 public class Artwork {
     private int id;
     private String title;
-    private String price;
+    private int price;
     private String icon;
     private int _sellCount = 0;
 
-    public Artwork(String title, String price, String icon)
+    public Artwork(String title, int price, String icon)
     {
         this.title = title;
         this.price = price;
         this.icon = icon;
     }
 
-    public Artwork(int id, String title, String price, String icon)
+    public Artwork(int id, String title, int price, String icon)
     {
         this.id = id;
         this.title = title;
@@ -25,7 +25,37 @@ public class Artwork {
         this.icon = icon;
     }
 
-    public Artwork(int id, String title, String price, String icon, int sellCount)
+    public Artwork(String title, int price, String icon, int sellCount, int currencyType)
+    {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.icon = icon;
+        this._sellCount = sellCount;
+        switch (currencyType)
+        {
+            case 0:
+                this.price = price * 100;
+        }
+
+    }
+
+    public Artwork(int id, String title, int price, String icon, int sellCount, int currencyType)
+    {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.icon = icon;
+        this._sellCount = sellCount;
+        switch (currencyType)
+        {
+            case 0:
+                this.price = price * 100;
+        }
+
+    }
+
+    public Artwork(int id, String title, int price, String icon, int sellCount)
     {
         this.id = id;
         this.title = title;
@@ -46,13 +76,19 @@ public class Artwork {
         this.title = title;
     }
 
-    public String getPrice()
+    public int getPrice()
     {
         return this.price;
     }
     public void setPrice()
     {
         this.price = price;
+    }
+
+    public double getConvertedPrice()
+    {
+        double hello = this.price * 0.01;
+        return hello;
     }
 
     public String getIcon() { return this.icon; }
