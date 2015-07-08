@@ -6,11 +6,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.dy.easale.FileHelper;
 import com.dy.easale.Model.Artwork;
@@ -108,8 +110,9 @@ public class AddArtworkActivity extends Activity {
         FileHelper.DbProvider dbProvider = new FileHelper.DbProvider(view.getContext());
 
         imagePath = imageProvider.saveImage(imageBitmap);
-        dbProvider.createArtwork(new Artwork(title, Integer.parseInt(price), imagePath, 0, 0));
-
+        Artwork hello = new Artwork(title, Integer.parseInt(price), imagePath, 0, 0);
+        dbProvider.createArtwork(hello);
+        Log.d("mahiru", hello.getPrice() + "");
 
         String message = "'" + title + "' has been saved";
         Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();

@@ -53,7 +53,8 @@ public class SaleAdapter extends ArrayAdapter<Artwork>
 
         imgIconView.setImageURI(Uri.parse(data.get(i).getIcon()));
         txtTitle.setText(sale.getTitle());
-        txtPrice.setText(sale.getPrice());
+        Log.d("mahiru", sale.getPrice() + "");
+        txtPrice.setText(Integer.toString(sale.getPrice()));
         txtCount.setText(Integer.toString(sale.GetSellCount())); //TODO: Add Sale Number
         btnIncrement.setImageResource(R.drawable.ic_launcher);
         btnDecrement.setImageResource(R.drawable.ic_launcher);

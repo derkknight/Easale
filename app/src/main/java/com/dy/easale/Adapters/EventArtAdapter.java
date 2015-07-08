@@ -44,14 +44,12 @@ public class EventArtAdapter extends ArrayAdapter<Artwork> {
 
         View row = inflater.inflate(R.layout.eventart_row, parent, false);
         TextView name = (TextView) row.findViewById(R.id.name);
-        TextView total = (TextView) row.findViewById(R.id.total);
         ImageView icon = (ImageView) row.findViewById(R.id.eventIcon);
         final CheckBox checkBox = (CheckBox) row.findViewById(R.id.cbxEventArt);
         checkBox.setClickable(false);
         final int position = i;
 
         name.setText(data.get(i).getTitle());
-        total.setText(data.get(i).getPrice());
         icon.setImageURI(Uri.parse(data.get(i).getIcon()));
         return row;
     }

@@ -21,16 +21,6 @@
         android:textSize="10dp"
         android:textStyle="bold"
         />
-
-    <!-- Total -->
-    <TextView
-        android:id="@+id/total"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/name"
-        android:layout_marginTop="3dip"
-        android:layout_toRightOf="@+id/eventIcon"
-        android:textSize="10dp" />
     
     <CheckBox
             android:id="@+id/cbxEventArt"

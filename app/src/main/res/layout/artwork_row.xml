@@ -9,8 +9,9 @@
         android:id="@+id/icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginRight="10dp"
-        android:longClickable="true"/>
+        android:layout_marginRight="1dp"
+        android:longClickable="true"
+        android:scaleType="centerCrop"/>
 
 
     <!-- Title -->

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -56,7 +57,6 @@ public class DetailArtworkActivity extends Activity {
         TextView priceLabel = (TextView) findViewById(R.id.artwork_price);
         //Get Description Label
         TextView descriptionLabel = (TextView) findViewById(R.id.artwork_description);
-
 
         //Obtain information
         Bundle extras = getIntent().getExtras();
